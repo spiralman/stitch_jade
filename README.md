@@ -10,9 +10,7 @@ Usage
 Add a Jade template to your existing Stitch package, with a ".jade"
 extension:
 
-    html
-        body
-        h1 #{title}
+    h1 #{title}
 
 Include the stitch_jade plugin in your Express.js server:
 
@@ -25,15 +23,22 @@ Include the stitch_jade plugin in your Express.js server:
 
 Call it in your client code:
 
-    page = require('templates/my_page')
+    myHeader = require('templates/my_header')
     
     $(document).ready( -> 
-        $(document).html(page.render(title: "My Page!")) 
+        $('body').html(myHeader.render(title: "My Page!")) 
     )
-    
+
+Note that the value returned by require is an object with a `render` function,
+which is mapped to the anonymous function returned by Jade's compiler.
+
 Details
 -------
 
-The server-side register() function takes an optional second argument,
-which is the options object to pass into jade.compile(). If you pass
-nothing in, it will pass {client: true}.
+The server-side `register()` function takes an optional second argument,
+which is the options object to pass into `jade.compile()`. The default 
+value is `{client: true}`.
+
+If you pass in your own options, you should be careful to include 
+`client: true` in the options, if you only want to depend on the client
+`runtime.js` library from Jade. 
