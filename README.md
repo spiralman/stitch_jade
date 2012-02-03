@@ -10,27 +10,27 @@ Usage
 Add a Jade template to your existing Stitch package, with a ".jade"
 extension:
 
-  html
-    body
-      h1 #{title}
+    html
+        body
+        h1 #{title}
 
 Include the stitch_jade plugin in your Express.js server:
 
-  stitch = require('stitch')
-  require('stitch_jade').register(stitch)
-  
-  clientApp = stitch.createPackage()
-
-  # etc... 
+    stitch = require('stitch')
+    require('stitch_jade').register(stitch)
+    
+    clientApp = stitch.createPackage()
+    
+    # etc... 
 
 Call it in your client code:
 
-  page = require('templates/my_page')
-  
-  $(document).ready( -> 
-    $(document).html(page.render(title: "My Page!")) 
-  )
-
+    page = require('templates/my_page')
+    
+    $(document).ready( -> 
+        $(document).html(page.render(title: "My Page!")) 
+    )
+    
 Details
 -------
 
